@@ -12,66 +12,66 @@ type Tree struct {
 	right *Tree
 }
 
-func (n *Tree) insert(data int) {
-	newNode := &Tree{
+func (t *Tree) insert(data int) {
+	newTree := &Tree{
 		data: data,
 	}
 
 	// 奇数处理
 	if data%2 != 0 {
-		if n.left == nil {
-			n.left = newNode
+		if t.left == nil {
+			t.left = newTree
 			return
 		}
 
-		if n.right == nil {
-			n.right = newNode
+		if t.right == nil {
+			t.right = newTree
 			return
 		}
 
-		n.left.insert(data)
+		t.left.insert(data)
 		return
 	}
 
 	// 偶数处理
-	if n.right == nil {
-		n.right = newNode
+	if t.right == nil {
+		t.right = newTree
 		return
 	}
 
-	if n.left == nil {
-		n.left = newNode
+	if t.left == nil {
+		t.left = newTree
 		return
 	}
-	n.right.insert(data)
+	t.right.insert(data)
 }
 
-func (n *Tree) printTree() {
-	if n == nil {
+func (t *Tree) printTree() {
+	if t == nil {
 		return
 	}
-	if n.left != nil {
-		fmt.Printf("%d, ", n.left.data)
+	if t.left != nil {
+		fmt.Printf("%d, ", t.left.data)
 	}
-	if n.right != nil {
-		fmt.Printf("%d\n", n.right.data)
+	if t.right != nil {
+		fmt.Printf("%d\n", t.right.data)
 	}
-	if n.left == nil && n.right == nil {
+	if t.left == nil && t.right == nil {
 		return
 	}
-	n.left.printTree()
-	n.right.printTree()
+	t.left.printTree()
+	t.right.printTree()
 }
 
 func main() {
-	node := &Tree{
+	tree := &Tree{
 		data: 1,
 	}
-	node.insert(2)
-	node.insert(3)
-	node.insert(4)
-	node.insert(5)
-	node.insert(6)
-	node.insert(7)
-	node.printTree()
+	tree.insert(2)
+	tree.insert(3)
+	tree.insert(4)
+	tree.insert(5)
+	tree.insert(6)
+	tree.insert(7)
+	tree.printTree()
 }
